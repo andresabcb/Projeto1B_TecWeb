@@ -1,0 +1,56 @@
+{% comment %} NAO FUNCIONA {% endcomment %}
+
+{% extends "notes/base.html" %} {% load static %} {% block content %}
+<div class="appbar">
+  <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
+  <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+  <a href="/tags"><button type="submit">Lista de Tags</button></a>
+</div>
+
+<main class="container">
+  <form method="post" class="form-card">
+    {% csrf_token %}
+    <input
+      id="titulo"
+      class="form-card-title"
+      type="text"
+      name="titulo"
+      placeholder="Título"
+    />
+    <textarea
+      id="detalhes"
+      class="autoresize"
+      name="detalhes"
+      placeholder="Digite o conteúdo..."
+    ></textarea>
+    <label id="tag" type="text" name="tag" class="form-card-title">
+      Selecione a tag</label
+    >
+    <select class="autoresize" id="tag" name="tag">
+      <option value="personal" class="form-card-title">Personal</option>
+      <option value="work" class="form-card-title">Work</option>
+      <option value="study" class="form-card-title">Study</option>
+      <option value="other" class="form-card-title">Other</option>
+    </select>
+    <button class="btn" type="submit">Criar</button>
+  </form>
+
+  <ul class="card-container">
+    {% for note in notes %}
+    <li class="card">
+      <h3 class="card-title">{{ note.title }}</h3>
+      <div class="card-content">
+        <p>{{ note.content }}</p>
+        <form method="post" action="/delete/{{note.id}}">
+          {% csrf_token %}
+          <button type="submit">Apagar</button>
+        </form>
+        <a href="/edit/{{note.id}}"> <button type="submit">Editar</button></a>
+        <a href="/tag/{{note.tag}}"><button type="submit">{{note.tag}}</button></a>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
+<script type="text/javascript" src="{% static 'notes/js/getit.js' %}"></script>
+{% endblock %}

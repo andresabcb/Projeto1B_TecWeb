@@ -1,0 +1,33 @@
+{% extends "notes/base.html" %} {% load static %} {% block content %}
+<div class="appbar">
+  <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
+  <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+  <a href="/tags"><button type="submit">Tags</button></a>
+  <form method="post">
+    {% csrf_token %}<button type="submit">Página inicial</button>
+  </form>
+</div>
+
+<main class="container">
+<h3>{{tag}}</h3>
+  <ul class="card-container">
+    {% for note in notes %}
+    <li class="card">
+      <h3 class="card-title">{{ note.title }}</h3>
+      <div class="card-content">
+        <p>{{ note.content }}</p>
+        <form method="post" action="/delete/{{note.id}}">
+          {% csrf_token %}
+          <button type="submit">Apagar</button>
+        </form>
+        <a href="/edit/{{note.id}}"> <button type="submit">Editar</button></a>
+        <a href="/tag/{{note.tag}}">
+          <button type="submit">{{note.tag}}</button></a
+        >
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</main>
+<script type="text/javascript" src="{% static 'notes/js/getit.js' %}"></script>
+{% endblock %}
