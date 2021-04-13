@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'nyg9xhcs4%y%q1@!ccvvx&tb$b@_1zidip!sgf-&_7&w3bu!%+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['projeto1b-tecweb-desabix22.herokuapp.com', 'localhost', '127.0.0.1']
 
