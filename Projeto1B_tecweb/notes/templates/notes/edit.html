@@ -2,7 +2,7 @@
 <div class="appbar">
   <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
   <span class="subtitle">Como o Post-it, mas com outro verbo</span>
-  <a href="/tags"><button type="submit">Tags</button></a>
+  <a href="/tags"><button type="submit" class="btn">Lista de Tags</button></a>
 </div>
 
 <main class="card-container">
@@ -22,14 +22,21 @@
       name="detalhes"
       value="{{note.content}}"
     />
-    <label id="tag" type="text" name="tag" class="form-card-title" value="{{note.tag}}">
+    <input
+      id="tag"
+      class="form-card-title"
+      type="text"
+      name="tag"
+      value="{{note.tag}}"
+    />
+    {% comment %} <label id="tag" type="text" name="tag" class="form-card-title" value="{{note.tag}}">
       Selecione a tag</label>
     <select class="autoresize" id="tag" name="tag" value="{{note.tag}}">
       <option value="personal" class="form-card-title">Personal</option>
       <option value="work" class="form-card-title">Work</option>
       <option value="study" class="form-card-title">Study</option>
       <option value="other" class="form-card-title">Other</option>
-    </select>
+    </select> {% endcomment %}
     <button class="btn" type="submit">Editar</button>
   </form>
 </main>

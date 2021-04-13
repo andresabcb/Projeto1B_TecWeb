@@ -2,14 +2,14 @@
 <div class="appbar">
   <img class="logo" src="{% static 'notes/img/logo-getit.png' %}" />
   <span class="subtitle">Como o Post-it, mas com outro verbo</span>
-  <a href="/tags"><button type="submit">Tags</button></a>
+  <a href="/tags"><button type="submit" class="btn">Lista de Tags</button></a>
   <form method="post">
-    {% csrf_token %}<button type="submit">Página inicial</button>
+    {% csrf_token %}<button type="submit" class="btn">Página inicial</button>
   </form>
 </div>
 
 <main class="container">
-<h3>{{tag}}</h3>
+<h3 class="btn">{{tag}}</h3>
   <ul class="card-container">
     {% for note in notes %}
     <li class="card">
